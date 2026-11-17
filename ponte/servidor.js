@@ -12,6 +12,7 @@
 // Iniciar: dois cliques em "iniciar.bat"  (ou: npm start)
 // Testar sem live: "iniciar-demo.bat"     (ou: npm run demo)
 // =============================================================
+import { networkInterfaces } from "node:os";
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { existsSync, writeFileSync } from "node:fs";
@@ -35,6 +36,8 @@ const USUARIO = preenchido(process.env.TIKTOK_USUARIO, "seu_usuario_aqui").repla
 const CHAVE_EULER = preenchido(process.env.EULER_API_KEY, "cole_sua_chave_aqui");
 const PORTA = Number(process.env.PORTA) || 8080;
 const MODO_DEMO = process.argv.includes("--demo");
+// Celular: abre o jogo também para aparelhos no mesmo Wi-Fi (só a sua rede de casa).
+const MODO_CELULAR = process.argv.includes("--celular") || /^(sim|s|true|1)$/i.test((process.env.CELULAR || "").trim());
 
 const hora = () => new Date().toLocaleTimeString("pt-BR");
 const log = (texto) => console.log(`[${hora()}] ${texto}`);
@@ -265,12 +268,30 @@ function iniciarDemo() {
 }
 
 // ---------- Ligar tudo ----------
-servidor.listen(PORTA, "127.0.0.1", () => {
+// Endereços do PC na rede de casa (192.168..., 10..., 172.16-31...).
+function enderecosNaRede() {
+  const lista = [];
+  for (const placas of Object.values(networkInterfaces())) {
+    for (const p of placas || []) {
+      const ipv4 = p.family === "IPv4" || p.family === 4;
+      if (ipv4 && !p.internal && /^(192\.168\.|10\.|172\.(1[6-9]|2\d|3[01])\.)/.test(p.address)) lista.push(p.address);
+    }
+  }
+  return lista;
+}
+
+servidor.listen(PORTA, MODO_CELULAR ? "0.0.0.0" : "127.0.0.1", () => {
   console.log("");
   console.log("  =============================================");
   console.log("   BALADA DOS RATOS - ponte com o TikTok");
   console.log(`   Jogo:          http://localhost:${PORTA}`);
   console.log(`   Para a live:   http://localhost:${PORTA}/?live`);
+  if (MODO_CELULAR) {
+    const ips = enderecosNaRede();
+    if (ips.length) for (const ip of ips) console.log(`   No celular:    http://${ip}:${PORTA}   (mesmo Wi-Fi)`);
+    else console.log("   No celular:    não achei o endereço do PC na rede (o PC está no Wi-Fi/cabo?)");
+    console.log("   Se o Windows perguntar, permita o Node.js em REDES PRIVADAS.");
+  }
   console.log("   Para fechar: feche esta janela (ou Ctrl+C)");
   console.log("  =============================================");
   console.log("");

@@ -37,6 +37,21 @@ Se algo não funcionar na primeira live: a ponte salva um exemplo de cada tipo d
 evento em `ponte/exemplos-eventos.json`. Com ele dá para ajustar o código se o TikTok
 tiver mudado o formato dos dados.
 
+## Abrir no celular
+
+O celular precisa estar no **mesmo Wi-Fi** (mesmo roteador) do PC.
+
+1. Dois cliques em `ponte/iniciar-demo-celular.bat` (teste, sem TikTok) ou
+   `ponte/iniciar-celular.bat` (live de verdade). Para o `iniciar.bat` normal também
+   liberar o celular, coloque `CELULAR=sim` no `.env`.
+2. A janela preta mostra o endereço: `No celular: http://192.168.x.x:8080`.
+   Digite esse endereço no navegador do celular e toque na tela para ligar o som.
+3. Se o Windows perguntar, permita o **Node.js** em **redes privadas**. Se a rede do
+   PC estiver como **Pública**, o celular não entra: em Configurações → Rede e
+   Internet → (sua conexão) → Perfil de rede, escolha **Privada**.
+
+Só aparelhos da sua rede de casa conseguem abrir; o arquivo `.env` continua protegido.
+
 ## Simulador (teclas)
 
 | Tecla | O que finge |
