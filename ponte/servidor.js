@@ -26,8 +26,13 @@ const PASTA_JOGO = resolve(AQUI, "..");
 // ---------- Configuração (.env) ----------
 const ARQUIVO_ENV = join(AQUI, ".env");
 if (existsSync(ARQUIVO_ENV)) process.loadEnvFile(ARQUIVO_ENV);
-const USUARIO = (process.env.TIKTOK_USUARIO || "").replace(/^@/, "").trim();
-const CHAVE_EULER = (process.env.EULER_API_KEY || "").trim();
+// Ignora os textos de exemplo do .env.exemplo (ainda não preenchidos).
+const preenchido = (valor, exemplo) => {
+  const v = (valor || "").trim().replace(/^["']|["']$/g, "");
+  return v === exemplo ? "" : v;
+};
+const USUARIO = preenchido(process.env.TIKTOK_USUARIO, "seu_usuario_aqui").replace(/^@/, "");
+const CHAVE_EULER = preenchido(process.env.EULER_API_KEY, "cole_sua_chave_aqui");
 const PORTA = Number(process.env.PORTA) || 8080;
 const MODO_DEMO = process.argv.includes("--demo");
 
