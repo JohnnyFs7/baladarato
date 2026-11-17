@@ -52,6 +52,13 @@ O celular precisa estar no **mesmo Wi-Fi** (mesmo roteador) do PC.
 
 Só aparelhos da sua rede de casa conseguem abrir; o arquivo `.env` continua protegido.
 
+## Abrir de qualquer lugar (site no GitHub)
+
+Com o GitHub Pages ligado, o jogo abre em **https://johnnyfs7.github.io/baladarato/**
+em qualquer celular ou PC, sem a ponte. Lá funciona só o simulador (sem live e sem as
+músicas da pasta `musicas/minhas`). Toque no botão redondo do controle para abrir os
+comandos; dá para digitar comentários e mandar "Como DJ".
+
 ## Simulador (teclas)
 
 | Tecla | O que finge |

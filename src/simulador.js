@@ -7,6 +7,7 @@
 //         1 a 5 presentes do cardápio | R alguém vira rata | T alguém vira rato
 //         M o DJ escolhe uma música | P próxima música
 //         N 10 pessoas entram | A automático | H esconder/mostrar o painel
+//         No celular: o botão redondo abre o painel; dá para digitar comentários
 // Na URL: ?live esconde o painel | ?auto já começa no automático
 // =============================================================
 window.Balada = window.Balada || {};
@@ -127,11 +128,12 @@ window.Balada = window.Balada || {};
     p: acoes.proximaMusica,
     n: acoes.entrarDez,
     a: alternarAutomatico,
-    h: () => painel.classList.toggle("escondido"),
+    h: () => alternarPainel(),
   };
   C.cardapio.forEach((_, i) => (TECLAS[String(i + 1)] = () => mandarPresente(i + 1)));
 
   window.addEventListener("keydown", (e) => {
+    if (e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return; // digitando um comentário
     const acao = TECLAS[e.key.toLowerCase()];
     if (acao && !e.repeat) acao();
   });
@@ -153,22 +155,68 @@ window.Balada = window.Balada || {};
   const painel = document.createElement("div");
   painel.id = "simulador";
   const titulo = document.createElement("strong");
-  titulo.textContent = "Simulador (H esconde)";
+  titulo.textContent = "Simulador";
   painel.appendChild(titulo);
+
+  // Comentário digitado (para testar "rata", "rato" e o número da música do DJ).
+  const linhaComentario = document.createElement("div");
+  linhaComentario.className = "linha-comentario";
+  const campo = document.createElement("input");
+  campo.type = "text";
+  campo.maxLength = 60;
+  campo.placeholder = "Escreva um comentário...";
+  const botaoAlguem = document.createElement("button");
+  botaoAlguem.textContent = "Enviar";
+  const botaoDJ = document.createElement("button");
+  botaoDJ.textContent = "Como DJ";
+  function comentarDigitado(comoDJ) {
+    const texto = campo.value.trim();
+    if (!texto) return;
+    const dj = Balada.djAtual && Balada.djAtual();
+    const usuario = comoDJ && dj ? { id: dj.id, nome: dj.nome, foto: null } : alguem(0.3);
+    enviar({ tipo: "comentario", usuario, texto });
+    campo.value = "";
+  }
+  botaoAlguem.addEventListener("click", () => comentarDigitado(false));
+  botaoDJ.addEventListener("click", () => comentarDigitado(true));
+  campo.addEventListener("keydown", (e) => e.key === "Enter" && comentarDigitado(false));
+  linhaComentario.append(campo, botaoAlguem, botaoDJ);
+  painel.appendChild(linhaComentario);
+
+  const grade = document.createElement("div");
+  grade.className = "grade";
   for (const [texto, acao] of BOTOES) {
     const b = document.createElement("button");
     b.textContent = texto;
     b.addEventListener("click", acao);
-    painel.appendChild(b);
+    grade.appendChild(b);
   }
   const botaoAuto = document.createElement("button");
   botaoAuto.id = "botao-auto";
   botaoAuto.textContent = "A  Automático: desligado";
   botaoAuto.addEventListener("click", alternarAutomatico);
-  painel.appendChild(botaoAuto);
+  grade.appendChild(botaoAuto);
+  painel.appendChild(grade);
   document.body.appendChild(painel);
 
+  // Botão redondo que abre/fecha o painel (bom para o celular).
+  const botaoPainel = document.createElement("button");
+  botaoPainel.id = "abrir-simulador";
+  botaoPainel.title = "Abrir/fechar o simulador (tecla H)";
+  document.body.appendChild(botaoPainel);
+  function alternarPainel(mostrar) {
+    const aberto = mostrar === undefined ? painel.classList.contains("escondido") : mostrar;
+    painel.classList.toggle("escondido", !aberto);
+    botaoPainel.textContent = aberto ? "✕" : "🎮";
+  }
+  botaoPainel.addEventListener("click", () => alternarPainel());
+  // No celular começa fechado, para ver a balada inteira.
+  alternarPainel(!window.matchMedia("(max-width: 700px)").matches);
+
   const parametros = new URLSearchParams(window.location.search);
-  if (parametros.has("live")) painel.classList.add("escondido");
+  if (parametros.has("live")) {
+    painel.classList.add("escondido");
+    botaoPainel.classList.add("escondido");
+  }
   if (parametros.has("auto")) alternarAutomatico();
 })();

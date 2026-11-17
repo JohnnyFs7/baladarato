@@ -95,6 +95,7 @@ Balada.config = {
     { nome: "Show Your Moves", artista: "Kevin MacLeod (incompetech.com) CC BY 4.0", arquivo: "musicas/show-your-moves.mp3", bpm: 136 },
     { nome: "Raving Energy", artista: "Kevin MacLeod (incompetech.com) CC BY 4.0", arquivo: "musicas/raving-energy.mp3", bpm: 122 },
     { nome: "Monkeys Spinning Monkeys", artista: "Kevin MacLeod (incompetech.com) CC BY 4.0", arquivo: "musicas/monkeys-spinning-monkeys.mp3", bpm: 144 },
+    // Suas músicas particulares ficam em musicas/minhas/lista.js (não vai para o GitHub).
   ],
   volumeMusica: 0.6, // de 0 a 1
   duracaoBatidaSegundos: 180, // as batidas da casa trocam sozinhas depois disso

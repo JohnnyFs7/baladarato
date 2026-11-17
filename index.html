@@ -19,34 +19,84 @@
     }
     canvas { display: block; }
 
-    /* Painel do simulador (some com a tecla H ou com ?live na URL) */
+    /* Painel do simulador (botão redondo ou tecla H; some com ?live na URL) */
     #simulador {
       position: fixed;
       top: 10px;
       left: 10px;
+      width: 250px;
+      max-height: calc(100% - 90px);
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
       padding: 10px;
-      background: rgba(20, 20, 30, 0.85);
+      background: rgba(20, 20, 30, 0.9);
       color: #fff;
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 13px;
       z-index: 10;
+      box-sizing: border-box;
     }
-    #simulador strong { margin-bottom: 4px; }
+    #simulador .grade { display: flex; flex-direction: column; gap: 4px; }
     #simulador button {
       text-align: left;
       font: 12px Arial, sans-serif;
-      padding: 4px 8px;
+      padding: 5px 8px;
       border: 0;
       border-radius: 6px;
       background: #3b2a66;
       color: #fff;
       cursor: pointer;
+      touch-action: manipulation;
     }
     #simulador button:hover { background: #5a3fa0; }
-    #simulador.escondido { display: none; }
+    #simulador button:active { background: #ff2e88; }
+    #simulador .linha-comentario { display: flex; gap: 4px; }
+    #simulador input {
+      flex: 1;
+      min-width: 0;
+      padding: 6px 8px;
+      border: 0;
+      border-radius: 6px;
+      font: 14px Arial, sans-serif;
+    }
+    #simulador .linha-comentario button { text-align: center; background: #ff2e88; }
+    #simulador.escondido, #abrir-simulador.escondido { display: none; }
+
+    #abrir-simulador {
+      position: fixed;
+      left: 12px;
+      bottom: 12px;
+      width: 54px;
+      height: 54px;
+      border: 0;
+      border-radius: 50%;
+      background: #3b2a66;
+      color: #fff;
+      font-size: 26px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      z-index: 21;
+      touch-action: manipulation;
+    }
+
+    /* Celular: painel embaixo, botões grandes em 2 colunas */
+    @media (max-width: 700px) {
+      #simulador {
+        top: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: auto;
+        max-height: 55%;
+        padding: 12px 12px 76px;
+        border-radius: 16px 16px 0 0;
+      }
+      #simulador .grade { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+      #simulador button { font-size: 14px; padding: 11px 8px; }
+      #simulador input { font-size: 16px; }
+    }
 
     /* Botão para liberar o som (o navegador exige um clique) */
     #ligar-som {
@@ -85,6 +135,8 @@
 
   <!-- A ordem importa: cada arquivo usa coisas dos anteriores. -->
   <script src="src/config.js"></script>
+  <!-- Suas músicas particulares (só existe no seu PC; no GitHub não tem, e tudo bem). -->
+  <script src="musicas/minhas/lista.js" onerror="this.remove()"></script>
   <script src="src/util.js"></script>
   <script src="src/efeitos.js"></script>
   <script src="src/rato.js"></script>

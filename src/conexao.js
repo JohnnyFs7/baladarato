@@ -9,6 +9,10 @@ window.Balada = window.Balada || {};
 
 (function () {
   if (!/^https?:$/.test(window.location.protocol)) return;
+  // No site do GitHub (ou outro da internet) não existe ponte: só o simulador.
+  const h = window.location.hostname;
+  const local = h === "localhost" || /^(127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|100\.)/.test(h);
+  if (!local) return;
 
   const aviso = document.createElement("div");
   aviso.id = "status-ponte";
