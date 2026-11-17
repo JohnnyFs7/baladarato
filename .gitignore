@@ -1,0 +1,11 @@
+# Chave da Euler e usuário: NUNCA vai para o GitHub
+.env
+ponte/.env
+# Dados de quem participou da live (nomes, ids)
+ponte/exemplos-eventos.json
+# Dependências (o iniciar.bat instala sozinho)
+node_modules/
+# Lixo do sistema
+Thumbs.db
+desktop.ini
+.DS_Store

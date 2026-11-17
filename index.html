@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Balada dos Ratos</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+    }
+    canvas { display: block; }
+
+    /* Painel do simulador (some com a tecla H ou com ?live na URL) */
+    #simulador {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 10px;
+      background: rgba(20, 20, 30, 0.85);
+      color: #fff;
+      border-radius: 10px;
+      font-size: 13px;
+      z-index: 10;
+    }
+    #simulador strong { margin-bottom: 4px; }
+    #simulador button {
+      text-align: left;
+      font: 12px Arial, sans-serif;
+      padding: 4px 8px;
+      border: 0;
+      border-radius: 6px;
+      background: #3b2a66;
+      color: #fff;
+      cursor: pointer;
+    }
+    #simulador button:hover { background: #5a3fa0; }
+    #simulador.escondido { display: none; }
+
+    /* Botão para liberar o som (o navegador exige um clique) */
+    #ligar-som {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 22px;
+      font: bold 16px Arial, sans-serif;
+      color: #fff;
+      background: #ff2e88;
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      z-index: 20;
+    }
+    #ligar-som.escondido { display: none; }
+
+    /* Bolinha que mostra se a ponte com o TikTok está ligada */
+    #status-ponte {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 6px 10px;
+      font: 12px Arial, sans-serif;
+      color: #fff;
+      background: rgba(20, 20, 30, 0.85);
+      border-radius: 8px;
+      z-index: 10;
+    }
+    #status-ponte.escondido { display: none; }
+  </style>
+</head>
+<body>
+  <canvas id="tela"></canvas>
+
+  <!-- A ordem importa: cada arquivo usa coisas dos anteriores. -->
+  <script src="src/config.js"></script>
+  <script src="src/util.js"></script>
+  <script src="src/efeitos.js"></script>
+  <script src="src/rato.js"></script>
+  <script src="src/cenario.js"></script>
+  <script src="src/musica.js"></script>
+  <script src="src/jogo.js"></script>
+  <script src="src/conexao.js"></script>
+  <script src="src/simulador.js"></script>
+</body>
+</html>
