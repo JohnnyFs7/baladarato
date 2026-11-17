@@ -21,7 +21,9 @@ TikTok**, e para qualquer outra música você precisa ter todos os direitos.
 - **Não pode:** funk, músicas dos anos 80 e 90 e outros sucessos famosos (mesmo versão
   "sem palavrão"). Têm dono, e a live pode ser silenciada ou derrubada.
 - **Pode:** as batidas da casa do jogo; músicas que **você** fez; músicas de quem te deu
-  permissão por escrito.
+  permissão por escrito; músicas com licença **Creative Commons BY** ou **CC0**, como as de
+  Kevin MacLeod (incompetech.com) que já vêm no jogo (dando o crédito, veja `CREDITOS.md`).
+  Cuidado: licença "NC" (não comercial) não serve, porque a live recebe presentes.
 - **Talvez (leia a licença antes):**
   - **Pixabay Music:** licença grátis para uso comercial, mas não fala de live e às vezes
     aparece reclamação automática de direitos.

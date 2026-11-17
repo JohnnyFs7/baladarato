@@ -328,11 +328,11 @@ window.Balada = window.Balada || {};
       const lista = Balada.musica.lista();
       const atual = Balada.musica.atual();
       const dj = festa.palco && festa.palco[0];
-      const alturaLinha = 54;
+      const alturaLinha = lista.length > 7 ? 46 : 54; // lista grande: linhas mais juntas
       const w = 760;
       const h = 130 + lista.length * alturaLinha;
       const x = (W - w) / 2;
-      const y = 930;
+      const y = Math.max(300, Math.min(930, 1620 - h)); // não cobre o menu de baixo
 
       ctx.save();
       ctx.globalAlpha = U.limitar(festa.playlist / 0.5, 0, 1); // some suavemente no fim
@@ -350,7 +350,7 @@ window.Balada = window.Balada || {};
         const tocandoEsta = atual && atual.indice === i;
         if (tocandoEsta) {
           ctx.fillStyle = "rgba(0,229,255,0.18)";
-          U.retanguloArredondado(ctx, x + 20, ly - 24, w - 40, 48, 12);
+          U.retanguloArredondado(ctx, x + 20, ly - alturaLinha / 2 + 3, w - 40, alturaLinha - 6, 12);
           ctx.fill();
         }
         U.texto(ctx, `${i + 1}`, x + 60, ly, 34, "#ff2e88");

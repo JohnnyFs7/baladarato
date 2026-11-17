@@ -43,12 +43,12 @@ Balada.config = {
   // Confira no app do TikTok o nome e o valor de cada presente
   // e ajuste aqui se estiver diferente.
   // =========================================================
-  // As roupas se SOMAM: quem chega a 30 moedas está de óculos + cordão + tênis.
+  // As roupas se SOMAM: quem chega a 100 moedas está de óculos + tênis + cordão.
   cardapio: [
     { presente: "Rosa", moedas: 1, roupa: "oculos" },
-    { presente: "Coração", moedas: 5, roupa: "cordao" },
     { presente: "Rosquinha", moedas: 30, roupa: "tenis" },
-    { presente: "Mãos de coração", moedas: 100, roupa: "jaqueta" },
+    { presente: "Mãos de coração", moedas: 100, roupa: "cordao" },
+    { presente: "Somando", moedas: 500, roupa: "jaqueta" },
     { presente: "Galáxia", moedas: 1000, roupa: "manto" },
   ],
 
@@ -86,6 +86,15 @@ Balada.config = {
     { nome: "Noite Retrô 80", artista: "Batida da casa", estilo: "anos80", bpm: 118 },
     { nome: "Eurodance 90", artista: "Batida da casa", estilo: "anos90", bpm: 136 },
     { nome: "House dos Ratos", artista: "Batida da casa", estilo: "house", bpm: 124 },
+    // Músicas de Kevin MacLeod (incompetech.com), licença Creative Commons BY 4.0:
+    // pode tocar em qualquer lugar, desde que dê o crédito (aparece na tela). Ver musicas/CREDITOS.md
+    { nome: "Who Likes to Party", artista: "Kevin MacLeod (incompetech.com) CC BY 4.0", arquivo: "musicas/who-likes-to-party.mp3", bpm: 117 },
+    { nome: "Disco con Tutti", artista: "Kevin MacLeod (incompetech.com) CC BY 4.0", arquivo: "musicas/disco-con-tutti.mp3", bpm: 115 },
+    { nome: "Funky Chunk", artista: "Kevin MacLeod (incompetech.com) CC BY 4.0", arquivo: "musicas/funky-chunk.mp3", bpm: 115 },
+    { nome: "Enter the Party", artista: "Kevin MacLeod (incompetech.com) CC BY 4.0", arquivo: "musicas/enter-the-party.mp3", bpm: 120 },
+    { nome: "Show Your Moves", artista: "Kevin MacLeod (incompetech.com) CC BY 4.0", arquivo: "musicas/show-your-moves.mp3", bpm: 136 },
+    { nome: "Raving Energy", artista: "Kevin MacLeod (incompetech.com) CC BY 4.0", arquivo: "musicas/raving-energy.mp3", bpm: 122 },
+    { nome: "Monkeys Spinning Monkeys", artista: "Kevin MacLeod (incompetech.com) CC BY 4.0", arquivo: "musicas/monkeys-spinning-monkeys.mp3", bpm: 144 },
   ],
   volumeMusica: 0.6, // de 0 a 1
   duracaoBatidaSegundos: 180, // as batidas da casa trocam sozinhas depois disso

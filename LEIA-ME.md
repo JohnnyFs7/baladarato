@@ -82,14 +82,14 @@ Presentes em combo (várias rosas seguidas) contam quando o combo termina.
 ### Roupas: o cardápio (embaixo da tela)
 
 Conta o **total de moedas** que a pessoa já mandou na live, e as roupas **se somam**:
-quem chega a 30 moedas está de óculos + cordão + tênis.
+quem chega a 100 moedas está de óculos + tênis + cordão.
 
 | Total na live | Presente de exemplo | Ganha |
 |---|---|---|
 | 1 moeda | Rosa | Óculos escuros |
-| 5 | Coração | Cordão de ouro |
 | 30 | Rosquinha | Tênis vermelho |
-| 100 | Mãos de coração | Jaqueta de couro |
+| 100 | Mãos de coração | Cordão de ouro |
+| 500 | Somando vários presentes | Jaqueta de couro |
 | 1.000 | Galáxia | Manto de rei |
 
 **Confira no app do TikTok** o nome e o valor de cada presente e ajuste em
@@ -112,7 +112,9 @@ Quando entra um DJ novo, aparece a lista de músicas na tela. O DJ escolhe
 Em cima da tela aparece "♪ música - artista (DJ Fulano)".
 
 O jogo já vem com 4 **batidas da casa** feitas pelo próprio código (funk, anos 80,
-anos 90 e house): são originais e não têm problema de direito autoral. Os ratos dançam
+anos 90 e house), que são originais, e 7 músicas de **Kevin MacLeod** (licença
+Creative Commons BY 4.0: pode tocar, dando o crédito, que já aparece na tela).
+Os créditos completos estão em `musicas/CREDITOS.md`. Os ratos dançam
 no ritmo da música. Para usar arquivos .mp3, veja `musicas/LEIA-ME.md`, que explica
 também que tipo de música pode tocar na live.
 

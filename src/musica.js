@@ -220,9 +220,12 @@ window.Balada = window.Balada || {};
     if (m.arquivo) {
       const audio = new Audio(m.arquivo);
       audio.volume = C.volumeMusica;
-      audio.addEventListener("ended", () => proxima());
+      // Só reage se esta ainda é a música atual (desligar a anterior também dispara "error").
+      const ehAtual = () => tocando && tocando.audio === audio;
+      audio.addEventListener("ended", () => ehAtual() && proxima());
       audio.addEventListener("playing", () => (errosSeguidos = 0));
       audio.addEventListener("error", () => {
+        if (!ehAtual()) return;
         console.warn("Não consegui tocar o arquivo:", m.arquivo);
         errosSeguidos++;
         // Se nenhuma música da lista funciona, para de tentar.
