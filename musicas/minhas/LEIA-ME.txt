@@ -1,0 +1,5 @@
+Coloque aqui as suas músicas (mp3, m4a, ogg ou wav).
+Esta pasta NÃO vai para o GitHub: os arquivos ficam só no seu PC.
+
+Depois acrescente uma linha na lista "musicas" do src/config.js, por exemplo:
+{ nome: "Nome da música", artista: "Quem canta", arquivo: "musicas/minhas/arquivo.mp3", bpm: 128 },
